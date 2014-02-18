@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Cadastro de Cliente</title>
+	<link href="../css/1geral.css" rel="stylesheet" type="text/css" />
+	<link href="../css/global.css" rel="stylesheet" type="text/css" />
+	<script src="../js/masked-input.js" type="text/javascript"></script>
+	<script src="../js/mascaras.js" type="text/javascript"></script>
+
+	<!--
+
+//-->
+</h:head>
+
+<h:body>
+	<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
+              
+	<p:dialog modal="true" widgetVar="statusDialog" header=""    
+	        draggable="false" closable="false">  
+	    <p:graphicImage value="/imagens/2.gif" />  
+	</p:dialog> 
+	
+	<h:form id="form" acceptcharset="ISO-8859-1">
+		<div id="principal">
+			<div id="superior">
+				<div class="atendimento">
+					<img src="../imagens/atendimento-online.png" border="0" />
+				</div>
+				<div class="dados">
+					Contato: (85) 9908-3536 <br />
+
+				</div>
+				<div class="icones">
+					
+				</div>
+				<div class="menu">
+					<p:tabMenu activeIndex="0">
+						<p:menuitem value="Cadastro" action="#{clienteManaged.novo}"
+							immediate="true" update=":form" icon="ui-icon-star" />
+						<p:menuitem value="Consulta" action="#{clienteManaged.consulta}"
+							immediate="true" update=":form" icon="ui-icon-search" />
+					</p:tabMenu>
+				</div>
+			</div>
+
+			<div class="form">
+				<div id="titulo">
+					<div>Consulta de Clientes</div>
+				</div>
+
+				<div class="modulo">
+					<h:outputLabel for="nome" value="Nome"></h:outputLabel>
+					<h:inputText styleClass="somente_letras"  id="nome" value="#{clienteManaged.cliente.nomeCliente}" maxlength="60"  class="F"></h:inputText>
+				</div>
+
+				<br />
+				<h:outputLabel for="botao" value=" "></h:outputLabel>
+				<p:commandButton id="botao" update=":form"
+					action="#{clienteManaged.buscarPorNome}" value="Consultar"></p:commandButton>
+				 <p:commandButton id="submitButton"  actionListener="#{clienteManaged.recuperaAniversariantes}" update=":form:dialog" oncomplete="dlg.show()" value="Aniversariantes"/>
+				<br /> <br />
+
+
+
+				<p:dataTable emptyMessage="Nenhum Registro Encontrado" id="clientes"
+					var="cliente" value="#{clienteManaged.clientes}" paginator="true"
+					rows="5" paginatorPosition="bottom">
+
+					<p:column headerText="">
+						<p:commandButton icon="ui-icon-search" title="editar"
+							action="#{clienteManaged.editar}">
+							<f:setPropertyActionListener value="#{cliente}"
+								target="#{clienteManaged.cliente}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="Nome" sortBy="#{cliente.codCliente}">
+					            	#{cliente.nomeCliente}
+					        	</p:column>
+
+					<p:column headerText="E-Mail">
+						<a href="mailto:#{cliente.email}?subject=Rinete Modas">#{cliente.email}</a>
+
+						
+					          		  
+			       </p:column>
+					<p:column width="115" headerText="Dt.Nascimento">
+						<h:outputText value="#{cliente.dtNascimento}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+
+					</p:column>
+					<p:column headerText="Celular">
+					            #{cliente.celular}
+					</p:column>
+
+				</p:dataTable>
+
+
+			</div>
+
+		</div>
+			<p:dialog header="Aniversariantes" id="dialog"  modal="true" widgetVar="dlg" resizable="true" width="1000" height="450"
+					showEffect="fade" hideEffect="fold">  
+		    
+		  
+		        <h:panelGrid columns="2" style="margin-bottom:10px">  
+		            			        <br/>
+			        
+			        <p:dataTable emptyMessage="Nenhum Registro Encontrado" id="clientesDialog"
+					var="cliente" value="#{clienteManaged.aniversariantes}" paginator="true"
+					rows="5" paginatorPosition="bottom" >
+
+					<p:column headerText="">
+						<p:commandButton icon="ui-icon-search" title="editar"
+							action="#{clienteManaged.editar}">
+							<f:setPropertyActionListener value="#{cliente}"
+								target="#{clienteManaged.cliente}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="Nome" sortBy="#{cliente.codCliente}" style="width:1000px">
+					            	#{cliente.nomeCliente}
+					        	</p:column>
+
+					<p:column headerText="E-Mail" style="width:1000px">
+						<a href="mailto:#{cliente.email}?subject=Rinete Modas">#{cliente.email}</a>
+			       </p:column>
+
+					<p:column width="115" headerText="Dt.Nascimento" style="width:1000px">
+						<h:outputText value="#{cliente.dtNascimento}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+
+					</p:column>
+					<p:column headerText="Celular" style="width:1000px">
+					            #{cliente.celular}
+					</p:column>
+
+				</p:dataTable>
+		        </h:panelGrid>  
+		</p:dialog>		
+	</h:form>
+	
+  
+
+</h:body>
+
+</html>

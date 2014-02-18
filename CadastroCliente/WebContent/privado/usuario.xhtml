@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h ="http://java.sun.com/jsf/html"
+xmlns:f ="http://java.sun.com/jsf/core"
+xmlns:p ="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastro de Cliente</title>
+	<link href="../css/1geral.css" rel="stylesheet" type="text/css" />
+	<link href="../css/global.css" rel="stylesheet" type="text/css" />
+	<script src="../js/masked-money.js" type="text/javascript"></script>
+	<script src="../js/masked-input.js" type="text/javascript"></script>
+	<script src="../js/aplica-mascara.js" type="text/javascript"></script>
+	
+</h:head>
+
+<h:body>
+
+<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>  
+              
+	<p:dialog modal="true" widgetVar="statusDialog"    
+	        draggable="false" closable="false">  
+	    <p:graphicImage value="/imagens/2.gif" />  
+	</p:dialog>
+
+<h:form id="form" acceptcharset="ISO-8859-1">
+
+  
+	<div id="principal">
+	<div id="superior">
+		
+    	<div class="atendimento"><img src="../imagens/atendimento-online.png" border="0" /></div>
+    	
+        <div class="dados">
+        	Contato: (85) 9908-3536 <br />
+        	
+        </div>
+        <div class="menu" >
+        
+          	 <p:tabMenu activeIndex="0">  
+				    <p:menuitem value="Cadastro" action="#{clienteManaged.novo}" immediate="true" update=":form" icon="ui-icon-star"/>  
+				    <p:menuitem value="Consulta" action="#{clienteManaged.consulta}" immediate="true" update=":form" icon="ui-icon-search" />  
+			</p:tabMenu>  
+        </div>   
+    </div>
+        	
+    		<p:growl id="growl" showDetail="true"  />  
+    
+			<div class="form">
+            	<div id="titulo"><div>Cadastro de Clientes</div></div>
+            	
+            	<div class="modulo">
+                	<h:outputLabel for="nome" value="Nome"></h:outputLabel>
+					<h:inputText styleClass="somente_letras"  id="nome" value="#{clienteManaged.cliente.nomeCliente}" maxlength="60" required="true"  label="Nome" class="F"></h:inputText>
+                </div>                                                                          
+            	<div class="modulo">
+                	<h:outputLabel for="dtNascimento" value="Data de Nascimento"></h:outputLabel>
+                	<p:calendar styleClass="mascara_data"  pattern="dd/MM/yyyy"  value="#{clienteManaged.cliente.dtNascimento}" effect="fade" id="dtNascimento" showOn="button" required="true"  label="Data de Nascimento" >
+                	</p:calendar> 
+                	  
+                </div>
+                
+                <div class="modulo">
+            		<h:outputLabel for="estado" value="Estado Civil"></h:outputLabel>
+            		<h:selectOneMenu value="#{clienteManaged.cliente.estadoCivil}" id="estado" required="true"  label="Estado" class="C">
+ 						<f:selectItem itemValue="" itemLabel="Selecione..." />
+ 						<f:selectItem itemValue="1" itemLabel="Solteiro" />
+ 						<f:selectItem itemValue="2" itemLabel="Casado" />
+ 						<f:selectItem itemValue="3" itemLabel="Divorciado" />
+					 </h:selectOneMenu>
+                </div> 
+                
+            	<div class="modulo">
+            		<h:outputLabel for="cpf" value="CPF"></h:outputLabel>
+                	<!-- <h:inputText  styleClass="somente_numero" id="cpf" value="#{clienteManaged.cliente.cpf}" required="true" maxlength="11"  label="CPF" class="B"> -->
+                	<p:inputMask id="cpf" value="#{clienteManaged.cliente.cpf}" styleClass="B" required="true"  label="CPF" maxlength="5"  mask="999.999.999-99"/>
+                	<!-- </h:inputText> -->
+                </div> 
+                
+                <div class="modulo">
+            		<h:outputLabel for="rg" value="RG"></h:outputLabel>
+                	<h:inputText  id="rg" value="#{clienteManaged.cliente.rg}" required="true" maxlength="13" label="RG" class="B"></h:inputText>
+                	<!-- <p:inputMask id="rg" value="#{clienteManaged.cliente.rg}" styleClass="B" required="true"  label="RG" maxlength="13"  mask="9"/> -->
+                </div> 
+                
+                 <div class="modulo">
+            		<h:outputLabel for="naturalidade" value="Naturalidade"></h:outputLabel>
+                	<h:inputText  id="naturalidade" value="#{clienteManaged.cliente.naturalidade}"  class="C"></h:inputText>
+                	<!-- <p:inputMask id="rg" value="#{clienteManaged.cliente.rg}" styleClass="B" required="true"  label="RG" maxlength="13"  mask="9"/> -->
+                </div> 
+            	
+            	<div class="modulo">
+            		<h:outputLabel for="telefoneResidencial" value="Telefone Residencial"></h:outputLabel>
+                	<!-- <h:inputText  id="telefoneResidencial" value="#{clienteManaged.cliente.telefone}" maxlength="9"  class="B"></h:inputText> -->
+                	<p:inputMask id="telefoneResidencial" value="#{clienteManaged.cliente.telefone}" styleClass="B" required="true"  label="Número" maxlength="5"  mask="(99) 9999-9999"/>
+                </div>   
+                
+                <div class="modulo">
+            		<h:outputLabel for="telefoneCelular" value="Celular"></h:outputLabel>
+                	<!-- <h:inputText  id="telefoneCelular" value="#{clienteManaged.cliente.celular}" maxlength="9"  class="B"></h:inputText> -->
+                	<p:inputMask id="telefoneCelular" value="#{clienteManaged.cliente.celular}" styleClass="B" required="true"  label="Número" maxlength="5"  mask="(99) 9999-9999"/>
+                </div>   
+                          
+            	<div class="modulo">
+            		<h:outputLabel for="email" value="E-mail"></h:outputLabel>
+                	<h:inputText  id="email" value="#{clienteManaged.cliente.email}" maxlength="60" class="F" required="true"  label="E-Mail">
+                		<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+"></f:validateRegex>
+                	</h:inputText>
+                </div>      
+                
+                <div class="modulo">
+            		<h:outputLabel for="conjuge" value="Cônjuge"></h:outputLabel>
+                	<h:inputText styleClass="somente_letras"  id="conjuge" value="#{clienteManaged.cliente.nomeConjuge}" maxlength="60" class="F"></h:inputText>
+                </div>       
+                
+                <div class="modulo">
+            		<h:outputLabel for="nmMae" value="Nome da Mãe"></h:outputLabel>
+                	<h:inputText styleClass="somente_letras"  id="nmMae" value="#{clienteManaged.cliente.nomeMae}" maxlength="60"  class="F"></h:inputText>
+                </div>       
+                
+                <div class="modulo">
+            		<h:outputLabel for="nmPai" value="Nome do Pai"></h:outputLabel>
+                	<h:inputText styleClass="somente_letras"  id="nmPai" value="#{clienteManaged.cliente.nomePai}" maxlength="60" class="F"></h:inputText>
+                </div>   
+                
+                <div class="modulo">
+            		<h:outputLabel for="estilo" value="Estilo"></h:outputLabel>
+                	<h:inputText styleClass="somente_letras"  id="estilo" value="#{clienteManaged.cliente.estilo}" maxlength="60" class="F"></h:inputText>
+                </div>           
+				<br />
+				<fieldset>
+					<legend>ENDEREÇO</legend>
+					<div class="modulo">
+						<h:outputLabel for="cep" value="Cep"></h:outputLabel>
+                		<!-- <h:inputText  id="cep" value="#{clienteManaged.cliente.endereco.cep}" maxlength="8" required="true"  label="Cep" class="B"></h:inputText> -->
+                		<p:inputMask id="cep" value="#{clienteManaged.cliente.endereco.cep}" styleClass="B" required="true"  label="Cep"   mask="99999-999"/>
+                	</div>  
+                	
+                	<div class="modulo">
+						<h:outputLabel for="cidade" value="Cidade"></h:outputLabel>
+                		<h:inputText  id="cidade" value="#{clienteManaged.cliente.endereco.cidade}" required="true"  label="Cidade" maxlength="30" class="E"></h:inputText>
+                	</div>                          
+                	
+                	<div class="modulo">
+						<h:outputLabel for="rua" value="Rua/Avenida"></h:outputLabel>
+                		<h:inputText  id="rua" value="#{clienteManaged.cliente.endereco.rua}" required="true"  label="Rua" maxlength="60" class="F"></h:inputText>
+                	</div>  
+                	
+                	<div class="modulo">
+						<h:outputLabel for="numero" value="Número"></h:outputLabel>
+                		<h:inputText  id="numero" value="#{clienteManaged.cliente.endereco.numero}" required="true"  label="Número" maxlength="5" class="B"></h:inputText>
+                		<!-- <p:inputMask id="numero" value="#{clienteManaged.cliente.endereco.numero}" styleClass="B" required="true"  label="Número"   mask="99999"/> -->
+                	</div>  
+                	
+                	<div class="modulo">
+						<h:outputLabel for="uf" value="UF"></h:outputLabel>
+                		<h:inputText styleClass="somente_letras"  id="uf" value="#{clienteManaged.cliente.endereco.uf}" maxlength="2" required="true"  label="Uf" class="A"></h:inputText>
+                	</div>   
+                	
+                	<div class="modulo">
+						<h:outputLabel for="bairro" value="Bairro"></h:outputLabel>
+                		<h:inputText  id="bairro" value="#{clienteManaged.cliente.endereco.bairro}" required="true"  label="Bairro" maxlength="60" class="D"></h:inputText>
+                	</div>     
+                	
+                	<div class="modulo">
+						<h:outputLabel for="complemento" value="Complemento"></h:outputLabel>
+                		<h:inputText  id="complemento" value="#{clienteManaged.cliente.endereco.complemento}" maxlength="60" class="D"></h:inputText>
+                	</div>                   
+				</fieldset>
+				
+				
+				 	<p:commandButton id="botao" update=":form" 
+					action="#{clienteManaged.salvar}" value="Salvar" styleClass=".ui-widget"></p:commandButton>
+            		
+           		
+                                                                                                                                                                 
+          		
+        
+    	</div>
+</div>
+</h:form> 
+</h:body>
+</html>

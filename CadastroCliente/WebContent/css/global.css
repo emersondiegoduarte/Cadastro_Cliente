@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+* {font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
+body {margin:0; background:url(../images/barraSuperior.png) center top no-repeat ;  }/*background:url(../images/barraSuperior.png) center top ;*/
+h2 {color:#114653;  font-size:18pt; margin-bottom:2px}
+h3 { color:#4995a8; font-size:14pt; margin:0}
+p { font-size:12pt; color:#999999}
+
+.login {border:2px #dcf0f5 solid; width:354px; margin:25px 0 9px 0; height:auto; padding:20px 4px; border-radius: 8px 8px 8px 8px; text-align:left}
+.login input[type="text"] { 
+	-moz-transition: all 0.4s ease 0s;
+    background: url("../images/bg-input.png") repeat-x scroll 0 0 #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px 8px 8px 8px;
+    color: #888888;
+    font: 16px Arial;
+    height: 19px;
+    margin: 0 12px 15px 12px;
+    outline: 0 none;
+    padding: 10px 12px;
+    width: 300px;
+	}
+.login input[type="password"] { 
+	-moz-transition: all 0.4s ease 0s;
+    background: url("../images/bg-input.png") repeat-x scroll 0 0 #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px 8px 8px 8px;
+    color: #888888;
+    font: 16px Arial;
+    height: 19px;
+    margin: 0 12px 15px 12px;
+    outline: 0 none;
+    padding: 10px 12px;
+    width: 300px;
+	}	
+.login label { margin-left:10px; color:#4995a8; font-size:13pt;}
+
+.login input.botao {
+	background: url("../images/botaologin.png") no-repeat scroll 0 top transparent;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font: bold 12px Arial;
+    height: 39px;
+    margin: 15px 0 0 170px;
+    width: 172px;	
+	} 
+.login input.botao:hover {
+	background: url("../images/botaologin.png") no-repeat scroll 0 bottom transparent;
+	} 	
+.rodape { background:#eaf4fe url(../images/ebix.png) no-repeat; height:52px; text-indent:180px; line-height:46px; margin-top:23px; color:#77b0be; font-size:10pt;}	
+.barraSuperior { background:url(../images/barraSuperior.png) center top ; height:103px}
+
+#principal { width:980px; height:895px; margin:0 auto }
+img[src="images/logo.png"] { margin-top:10px}

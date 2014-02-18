@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context reloadable="true">
+	<Resource name="jdbc/ClienteDB"
+		auth="Container"
+		type="javax.sql.DataSource"
+		maxActive="100"
+		maxIdle="30"
+		maxWait="10000"
+		username="rinetemo_root"
+		password="rinetemo_root"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/rinetemo_rinete?autoReconnect=true"
+	/>
+
+
+</Context>
